@@ -41,9 +41,11 @@
 
 ## Phase 4: Vector Store & Embeddings (Steps 12–15)
 
+SENTINEL uses a custom `LocalMongoVectorStore` (not Spring AI's MongoDB Atlas auto-config). We build our own to match the production app.
+
 | Step | Goal |
 |------|------|
-| 12 | Add vector store (LocalMongoVectorStore or Spring AI) |
+| 12 | Add vector store (custom LocalMongoVectorStore) |
 | 13 | Configure Ollama embedding model |
 | 14 | Add VectorStore bean |
 | 15 | Sparse embeddings (optional BGE-M3 learned sparse) |
@@ -105,37 +107,38 @@
 
 ---
 
-## Phase 9: Connectors & Sync (Steps 43–46)
+## Phase 9: Connectors & Sync (Steps 43–47)
 
 | Step | Goal |
 |------|------|
 | 43 | S3 connector |
 | 44 | SharePoint connector |
 | 45 | Confluence connector |
-| 46 | Incremental sync, fingerprint tracking |
+| 46 | Google Drive connector |
+| 47 | Incremental sync, fingerprint tracking |
 
 ---
 
-## Phase 10: Trust & Compliance (Steps 47–51)
+## Phase 10: Trust & Compliance (Steps 48–52)
 
 | Step | Goal |
 |------|------|
-| 47 | Visual evidence endpoints (source page, region rendering) |
-| 48 | Prompt injection detection, audit logging |
-| 49 | HIPAA strict mode (medical edition) |
-| 50 | License validation, editions (trial, enterprise, medical, government) |
-| 51 | Auth modes (OIDC, CAC) |
+| 48 | Visual evidence endpoints (source page, region rendering) |
+| 49 | Prompt injection detection, audit logging |
+| 50 | HIPAA strict mode (medical edition) |
+| 51 | License validation, editions (trial, enterprise, medical, government) |
+| 52 | Auth modes (OIDC, CAC) |
 
 ---
 
-## Phase 11: UI & Polish (Steps 52–55)
+## Phase 11: UI & Polish (Steps 53–56)
 
 | Step | Goal |
 |------|------|
-| 52 | Chat UI (HTML/JS) |
-| 53 | Admin dashboard |
-| 54 | Health endpoint, observability |
-| 55 | Documentation, runbooks |
+| 53 | Chat UI (HTML/JS) |
+| 54 | Admin dashboard |
+| 55 | Health endpoint, observability |
+| 56 | Documentation, runbooks |
 
 ---
 
@@ -151,11 +154,11 @@
 | 6 | 23–26 | Basic RAG |
 | 7 | 27–38 | Advanced RAG strategies |
 | 8 | 39–42 | Search intelligence |
-| 9 | 43–46 | Connectors |
-| 10 | 47–51 | Trust & compliance |
-| 11 | 52–55 | UI & polish |
+| 9 | 43–47 | Connectors |
+| 10 | 48–52 | Trust & compliance |
+| 11 | 53–56 | UI & polish |
 
-**Total: ~55 steps**
+**Total: ~56 steps**
 
 ---
 

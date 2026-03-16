@@ -13,7 +13,22 @@ Add Lombok, Spring Security, and Spring AI (Ollama) to `build.gradle`. These are
 |------------|---------|
 | **Lombok** | Reduces boilerplate (getters, setters, etc.) in model classes |
 | **Spring Security** | Authentication and authorization; we'll configure it in a later step |
+| **Spring Boot Validation** | Request validation for DTOs and API endpoints (e.g. `/api/ask`, `/api/ingest`) |
 | **Spring AI Ollama** | Connects to local Ollama for LLM chat and embeddings |
+
+## How Dependencies Work in Gradle
+
+**Where do these come from?** Dependency coordinates (e.g. `org.projectlombok:lombok`) are published by library authors to Maven Central or other repositories. You find them in official docs, [search.maven.org](https://search.maven.org), or [start.spring.io](https://start.spring.io).
+
+**Format:** `configuration 'group:artifact'` or `configuration 'group:artifact:version'`. The version is optional when a BOM (Bill of Materials) manages it.
+
+| Configuration | Meaning |
+|---------------|---------|
+| `implementation` | Compile and runtime; included in the final app |
+| `compileOnly` | Compile only; not packaged (e.g. Lombok—used at compile time) |
+| `annotationProcessor` | Runs during compile (e.g. Lombok generates code) |
+
+**Copy-paste tip:** In code blocks, copy only the lines inside the fences—not the `groovy` label.
 
 ## Instructions
 
@@ -43,6 +58,7 @@ Inside `dependencies { }`, add these lines **after** the existing `implementatio
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.ai:spring-ai-ollama-spring-boot-starter:1.0.0-M4'
 ```
 
@@ -66,7 +82,7 @@ dependencyManagement {
 
 **Note:** Spring Security will add a default login. When you run the app, you may see a login page at `/` until we configure Security in Step 8. We'll fix that in a later step.
 
-**Scaffold note:** If your scaffold has Spring Boot 4.0.2, Step 5 changes it to 3.4.13 for Spring AI compatibility. If you have `spring-boot-starter-webmvc`, keep it—it's equivalent to `spring-boot-starter-web` for our purposes.
+**Scaffold note:** If your scaffold uses `spring-boot-starter-webmvc`, replace it with `spring-boot-starter-web` (Spring Boot 3.4 uses the web starter).
 
 ## Step-by-Step: Edit build.gradle
 
@@ -80,7 +96,7 @@ dependencyManagement {
 
 - [ ] Spring Boot version is 3.4.13
 - [ ] `maven { url 'https://repo.spring.io/milestone' }` is in repositories
-- [ ] Lombok, Security, Spring AI Ollama are in dependencies
+- [ ] Lombok, Security, Validation, Spring AI Ollama are in dependencies
 - [ ] `dependencyManagement` block with Spring AI BOM is present
 - [ ] `.\gradlew build` succeeds
 

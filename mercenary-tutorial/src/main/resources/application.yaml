@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: mercenary
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+
+server:
+  port: 8081
